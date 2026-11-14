@@ -1,0 +1,7 @@
+Origin: Poppy Repo
+Label: Poppy
+Suite: stable
+Codename: stable
+Architectures: aarch64
+Components: main
+Description: Custom Termux Repository
