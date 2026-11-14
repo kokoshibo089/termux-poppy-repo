@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poppy Repository</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #58a6ff;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+        }
+        .repo-info {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .command-box {
+            background-color: #21262d;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            direction: ltr;
+            text-align: left;
+            overflow-x: auto;
+            margin: 10px 0;
+            border-left: 4px solid #58a6ff;
+        }
+        .package-list {
+            list-style: none;
+            padding: 0;
+        }
+        .package-item {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s;
+        }
+        .package-item:hover {
+            border-color: #58a6ff;
+        }
+        .package-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        .package-version {
+            color: #8b949e;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #8b949e;
+        }
+        .error {
+            color: #f85149;
+            text-align: center;
+            padding: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #8b949e;
+            font-size: 0.9em;
+            border-top: 1px solid #30363d;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Poppy Repository</h1>
+        
+        <div class="repo-info">
+            <p>مرحباً بك في مستودع Poppy المخصص لـ Termux. يحتوي هذا المستودع على أدوات برمجية مميزة.</p>
+            
+            <h3>طريقة التثبيت:</h3>
+            <p>أضف المستودع أولاً:</p>
+            <div class="command-box">
+                echo "deb [trusted=yes] https://kokoshibo089.github.io/termux-poppy-repo/ stable main" > $PREFIX/etc/apt/sources.list.d/poppy.list
+            </div>
+            <p>ثم قم بتحديث الحزم وتثبيت ما تريد:</p>
+            <div class="command-box">
+                pkg update && pkg install poppy
+            </div>
+        </div>
+
+        <h2>الحزم المتاحة:</h2>
+        <div id="packages-container">
+            <div class="loading">جاري تحميل قائمة الحزم...</div>
+        </div>
+
+        <footer>
+            <p>تم تطويره بواسطة kokoshibo089</p>
+        </footer>
+    </div>
+
+    <script>
+        // دالة لجلب وعرض الحزم من ملف Packages
+        async function loadPackages() {
+            const container = document.getElementById('packages-container');
+            try {
+                // جلب ملف Packages الذي أنشأناه
+                const response = await fetch('dists/stable/main/binary-aarch64/Packages');
+                if (!response.ok) throw new Error('لم يتم العثور على ملف الحزم');
+                
+                const text = await response.text();
+                
+                // تحليل محتوى الملف
+                const packages = [];
+                const blocks = text.split('\n\n');
+                
+                blocks.forEach(block => {
+                    if (!block.trim()) return;
+                    const lines = block.split('\n');
+                    let pkg = {};
+                    
+                    lines.forEach(line => {
+                        const [key, ...valueParts] = line.split(':');
+                        if (key && valueParts.length > 0) {
+                            pkg[key.trim()] = valueParts.join(':').trim();
+                        }
+                    });
+                    
+                    if (pkg.Package) packages.push(pkg);
+                });
+
+                // عرض الحزم
+                if (packages.length === 0) {
+                    container.innerHTML = '<div class="error">لا توجد حزم متاحة حالياً.</div>';
+                    return;
+                }
+
+                const list = document.createElement('ul');
+                list.className = 'package-list';
+
+                packages.forEach(pkg => {
+                    const item = document.createElement('li');
+                    item.className = 'package-item';
+                    
+                    // رابط تحميل الحزمة المباشر
+                    const downloadUrl = `pool/main/${pkg.Filename ? pkg.Filename.split('/').pop() : pkg.Package + '.deb'}`;
+                    
+                    item.innerHTML = `
+                        <a href="${downloadUrl}" class="package-name">${pkg.Package}</a>
+                        <span class="package-version">v${pkg.Version || '1.0'}</span>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9em;">${pkg.Description || 'لا يوجد وصف'}</p>
+                    `;
+                    list.appendChild(item);
+                });
+
+                container.innerHTML = '';
+                container.appendChild(list);
+
+            } catch (error) {
+                container.innerHTML = `<div class="error">خطأ في تحميل الحزم: ${error.message}</div>`;
+            }
+        }
+
+        // تشغيل الدالة عند تحميل الصفحة
+        loadPackages();
+    </script>
+</body>
+</html>
