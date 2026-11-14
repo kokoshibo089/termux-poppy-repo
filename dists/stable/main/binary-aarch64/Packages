@@ -1,7 +1,7 @@
 Package: pop
 Version: 1.0
 Architecture: aarch64
-Maintainer: YourName
+Maintainer: kokoshibo089
 Depends: nodejs
 Filename: pool/main/pop-pkg.deb
 Size: 2752
