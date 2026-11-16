@@ -1,7 +1,27 @@
-Origin: Poppy Repo
-Label: Poppy
-Suite: stable
-Codename: stable
+Codename: termux
+Version: 1
 Architectures: aarch64
+Description: stable repository
+Suite: stable
+Date: Mon, 16 Nov 2026 10:58:06 UTC
 Components: main
-Description: Custom Termux Repository
+MD5Sum:
+ ab55eab9701a290afd591399b60a77cc 1068 main/binary-aarch64/Packages
+ 25de76ac8a99fa741037ab3220f7bc58 712 main/binary-aarch64/Packages.xz
+ 828a3690720c9271d51d6719ab5c019d 89625 main/Contents-aarch64
+ befccfba46808f24876d3809427e7c3a 5284 main/Contents-aarch64.xz
+SHA1:
+ 28fd7f923b561a2ba86d7cfa047dada92bed63f0 1068 main/binary-aarch64/Packages
+ 438c45e2252992fff12870dff4988db8e8735276 712 main/binary-aarch64/Packages.xz
+ 4d117e09f019450442ec1c69d974cdc27f169709 89625 main/Contents-aarch64
+ f1a9105e54e916fc26dbd0b53806159da21702de 5284 main/Contents-aarch64.xz
+SHA256:
+ 1d7c60ccf524cdf4b15309be576e5ca8bad5ddf5c53d3a83664b8b37c711a77b 1068 main/binary-aarch64/Packages
+ 1a52f4a0c1676525fcb7f986950aa000f1815465a964ddbc78d2d8710ff718b1 712 main/binary-aarch64/Packages.xz
+ 0c640420b4017c5314fb927873309d1b08cd55cf4d675d94c08b4c83cbd93dc7 89625 main/Contents-aarch64
+ a18d8fa22254c4eace7dcd066d0c1bd3ceffbccf52f815713c2653cd931f2306 5284 main/Contents-aarch64.xz
+SHA512:
+ d19e7ee95a82de21b39fc029a500f3e302bc1a96179ef147122e69be32b9748a4bbbac002a8bccef2743777b623c25532523077b6a21ba4bc201309fb6bbafbf 1068 main/binary-aarch64/Packages
+ d41944fd2d5c11305fcacec93e2a33d39da5026b4ff463afd4b72c9cace6e5d0a65bf5b732267ff6bc83a2c175de1a16aae0da17cc586de8da6265df2903c720 712 main/binary-aarch64/Packages.xz
+ bd56494d9470ae4cb3d6194fca140348ef88b565c625b284c261b2478344717795b75a8ba5086a45f8c645f63e908ac7bac822c709a7d2ba4b85caba3fd2c2e9 89625 main/Contents-aarch64
+ 985549ff02f0cb1fde3de9436e48425ad3f7c5fa3d432590ba44b74acf2c001c179630bacce59d3530106fcea75cda9f50ec5f11282300e36c279d2f43f49f31 5284 main/Contents-aarch64.xz

@@ -1,24 +1,26 @@
-Package: pop
+Package: pop-pkg
 Version: 1.0
 Architecture: aarch64
 Maintainer: kokoshibo089
 Depends: nodejs
-Filename: pool/main/pop-pkg.deb
-Size: 2752
-MD5sum: fe3c201e930da9d7d88200101dbfc014
-SHA1: 3374c82aef63562773a67c92937602cb1ba7aa56
-SHA256: b9058c79202a87bea0b18faa3a4b7581d308fa9467bf64ccb6d5986710e28d2d
 Description: The official package manager for the Poppy repository.
+Filename: dists/stable/main/binary-aarch64/pop-pkg.deb
+Size: 2764
+MD5Sum: b8bf99ae39b8570d14f20c66bdebdb56
+SHA1: 4f219243bfa99f4f2f70d4c88fe4b6b02352f23d
+SHA256: 56659af7a6b05ce77b78ac99614323fd751bab725a4efc0308f7918b8ac9da33
+SHA512: 02e484a7901ec66bc0c49cc3c626ae5f01bb42c17c9f9eace3f14aefb86630c84af9b91173a51cb87b7f6c61ac8aa858ea6917dc3d27822347b661144129e7b4
 
-Package: poppy
+Package: poppy-pkg
 Version: 1.0
 Architecture: aarch64
 Maintainer: kokoshibo089
 Depends: nodejs, ncurses
-Filename: pool/main/poppy-pkg.deb
-Size: 8314820
-MD5sum: d175e57b1abdf94c2f602b44a1549d55
-SHA1: 4e3cdc78a6df6dd167fe2eb1c42a9d9eaddf7ff5
-SHA256: d83ddfb8240f9199d0793eb4b3ba2c0afe1562eefee3c86cd349a1207f378092
 Description: Custom nano editor with built-in PDF and DOCX support.
+Filename: dists/stable/main/binary-aarch64/poppy-pkg.deb
+Size: 8314836
+MD5Sum: 7433e7f024c7194a8f606ef7c7efc9bf
+SHA1: 12477810ec7246b46221fcbc6e4037802e214141
+SHA256: badc36635ad03cbd15cee6efefbffd11f04afd5586ea39131c083aa4cce96abf
+SHA512: 52b4ca7f74d74d803bcde7a2cda7a57e1b6edc42b54e5544cd42a2b15e1f92a995fc7ec849e5eb919457c8c7a41aec927719d19cb1b2e27223cbbaae644110ac
 
